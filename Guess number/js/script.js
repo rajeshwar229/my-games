@@ -2,7 +2,7 @@
 
 $(function(){
     
-    //This is only for storing and handling UI Elements
+    //This is only for storing static and dynamic UI Elements
     const UIController = (() => {
         
         //Add static UI Elements here
@@ -273,6 +273,7 @@ $(function(){
                 gameCtrl.emptyEle(DOM.gameNumbers)
                         .addRemoveCls(DOM.overlayNumbers, 'd-none', 'd-block')
                         .attrChange(DOM.startGame, 'disabled', true)
+                        .addRemoveCls(DOM.startGame, 'dim-out')
                         .triggerEvent(DOM.resetForm, 'click');
                 
                 // Setting back the gameObj to original values
@@ -315,7 +316,7 @@ $(function(){
 
             //Enable start game button only if form is valid
             DOM.allFormElements.on('keyup blur', function() {
-                DOM.formElement.valid() ? gameCtrl.attrChange(DOM.startGame, 'disabled', false) : gameCtrl.attrChange(DOM.startGame, 'disabled', true);
+                DOM.formElement.valid() ? gameCtrl.attrChange(DOM.startGame, 'disabled', false).addRemoveCls(DOM.startGame, '', 'dim-out') : gameCtrl.attrChange(DOM.startGame, 'disabled', true).addRemoveCls(DOM.startGame, 'dim-out');
             });
 
             // Dark mode 
